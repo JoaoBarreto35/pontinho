@@ -1,0 +1,46 @@
+:root {
+  --cor-primaria: #ffb6c1; /* Rosa Claro (Hello Kitty) */
+  --cor-secundaria: #fff0f5; /* Rosa Muito Claro */
+  --cor-fundo: #ffffff; /* Branco */
+  --cor-texto: #333333; /* Preto (para contraste) */
+
+  --cor-laço: #ff69b4; /* Rosa vibrante (laço) */
+  --cor-nariz: #ffd700; /* Amarelo (nariz da Hello Kitty) */
+  --cor-olhos: #000000; /* Preto (olhos) */
+
+  --fonte-principal: 'Segoe UI', sans-serif;
+
+  --espaco-sm: 0.5rem;
+  --espaco-md: 1rem;
+  --espaco-lg: 2rem;
+  --borda-arredondada: 12px;
+}
+
+/* Modo Claro */
+body {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-principal);
+  transition: all 0.3s ease;
+}
+
+a {
+  color: var(--cor-laço);
+}
+
+[data-theme='dark'] {
+  --cor-primaria: #ffb6c1; /* Rosa Claro */
+  --cor-secundaria: #ff69b4; /* Rosa vibrante */
+  --cor-fundo: #1f1f1f; /* Fundo escuro */
+  --cor-texto: #ffffff; /* Texto claro */
+
+  --cor-laço: #ffb6c1; /* Rosa Claro (laço) */
+  --cor-nariz: #ffd700; /* Amarelo */
+  --cor-olhos: #ffffff; /* Branco (olhos) */
+}
+
+/* Modo Escuro */
+body[data-theme='dark'] {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}

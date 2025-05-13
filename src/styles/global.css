@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fonte-principal);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+  display: flex;
+  align-items: first baseline;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
