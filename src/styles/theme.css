@@ -29,14 +29,8 @@ a {
 }
 
 [data-theme='dark'] {
-  --cor-primaria: #ffb6c1; /* Rosa Claro */
-  --cor-secundaria: #ff69b4; /* Rosa vibrante */
   --cor-fundo: #1f1f1f; /* Fundo escuro */
   --cor-texto: #ffffff; /* Texto claro */
-
-  --cor-laço: #ffb6c1; /* Rosa Claro (laço) */
-  --cor-nariz: #ffd700; /* Amarelo */
-  --cor-olhos: #ffffff; /* Branco (olhos) */
 }
 
 /* Modo Escuro */

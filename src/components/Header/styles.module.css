@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   gap: 1.8rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 3.6rem;
 }
 .title {
   color: var(--cor-primaria);
@@ -26,6 +26,8 @@
   color: #fff;
   border-radius: 0.8rem;
   padding: 0.8rem;
+  border: none;
+  cursor: pointer;
 }
 
 .menuLink svg {

@@ -1,0 +1,128 @@
+.calendario {
+  text-align: center;
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  color: black;
+}
+
+.dia,
+.prazo {
+  padding: 10px;
+  border-radius: var(--borda-arredondada);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.dia {
+  background-color: var(--cor-secundaria);
+}
+
+.prazo {
+  background-color: var(--cor-laço);
+  color: white;
+  font-weight: bold;
+  border: 2px solid #ff69b4;
+  transition: 0.3s ease;
+}
+
+.prazo:hover {
+  background-color: #ff1493;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--cor-secundaria);
+  border: 3px solid var(--cor-laço);
+  border-radius: var(--borda-arredondada);
+  box-shadow: 0px 6px 12px rgba(255, 105, 180, 0.4); /* Sombras suaves rosa */
+  padding: var(--espaco-lg);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  animation: aparecer 0.3s ease-in-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -55%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.modal h3 {
+  color: var(--cor-laço);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.modal ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modal li {
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  padding: var(--espaco-sm);
+  border-radius: var(--borda-arredondada);
+  margin: var(--espaco-sm) 0;
+}
+
+.modal button {
+  margin-top: var(--espaco-md);
+  padding: var(--espaco-sm) var(--espaco-md);
+  border: none;
+  border-radius: var(--borda-arredondada);
+  background-color: var(--cor-laço);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.modal button:hover {
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+}
+.modal ul li strong {
+  text-decoration: none;
+  color: var(--cor-laço);
+  transition: 0.2s ease-in-out;
+}
+
+.modal ul li strong:hover {
+  text-decoration: underline;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espaco-md);
+}
+
+.controlMonth {
+  background-color: var(--cor-laço);
+  color: white;
+  border: none;
+  border-radius: var(--borda-arredondada);
+  padding: var(--espaco-sm) var(--espaco-md);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.controlMonth:hover {
+  background-color: var(--cor-primaria);
+}
