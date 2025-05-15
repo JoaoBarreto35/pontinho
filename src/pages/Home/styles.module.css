@@ -9,6 +9,7 @@
   padding-left: 0.8rem;
   border-block: 1px solid var(--cor-primaria);
 }
+
 .listaDeItens {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

@@ -55,6 +55,7 @@ export default function Projetos() {
           value={busca}
           onChange={e => setBusca(e.target.value)}
           className={styles.campoBusca}
+          style={{ color: 'black' }}
         />
         <select
           value={status}

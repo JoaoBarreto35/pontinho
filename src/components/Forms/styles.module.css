@@ -5,8 +5,8 @@
   justify-content: center;
   gap: 2rem;
   padding: 2rem 1rem;
-  background-color: var(--cor-fundo);
-  color: var(--cor-texto);
+
+  color: black;
 }
 
 form {
