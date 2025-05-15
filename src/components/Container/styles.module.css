@@ -5,7 +5,15 @@
 .container {
   max-width: 98rem;
   margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 .content {
   margin: 3.2rem;
+}
+@media (max-width: 500px) {
+  .content {
+    margin: 0.9rem;
+  }
 }

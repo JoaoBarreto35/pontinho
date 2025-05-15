@@ -41,3 +41,8 @@
 .status span {
   color: var(--cor-primaria);
 }
+@media (max-width: 500px) {
+  .card {
+    width: 280px;
+  }
+}

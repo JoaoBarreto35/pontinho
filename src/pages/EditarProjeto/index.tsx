@@ -116,7 +116,7 @@ export default function EditarProjeto() {
           {/* Timer - Posicionado entre carreiras e receita */}
           <div className={styles.timerBox}>
             <h3>
-              Tempo gasto: {Math.floor(tempoGasto / 60)} min {tempoGasto % 60} s
+              Timer: {Math.floor(tempoGasto / 60)} min {tempoGasto % 60} s
             </h3>
             <button onClick={rodando ? pausarTimer : iniciarTimer}>
               {rodando ? 'Pausar' : 'Iniciar'}

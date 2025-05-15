@@ -5,14 +5,17 @@
   width: 100%;
   justify-content: left;
   overflow-x: auto;
-  padding: 1rem;
+  padding-block: 1rem;
+  padding-left: 0.8rem;
   border-block: 1px solid var(--cor-primaria);
 }
 .listaDeItens {
-  display: flex;
-  flex-direction: column;
-  gap: 20rem;
-  align-items: center;
-  justify-content: start;
-  margin-block: 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (max-width: 500px) {
+  .grid {
+    width: 95%;
+    margin-left: 2.5%;
+  }
 }

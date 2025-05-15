@@ -18,23 +18,19 @@ export default function Home() {
     <Container>
       <Header />
       <div className={styles.listaDeItens}>
-        {/* <h1>Bem-vindo ao Pontinho a Pontinho 🧶</h1> */}
+        <h2>Pendentes</h2>
 
-        <div>
-          <h2>Pendentes</h2>
-
-          {carregando ? (
-            <p>Carregando projetos...</p>
-          ) : projetosFiltrados.length > 0 ? (
-            <div className={styles.grid}>
-              {projetosFiltrados.map(projeto => (
-                <ProjetoCard key={projeto.id} projeto={projeto} />
-              ))}
-            </div>
-          ) : (
-            <p>Nenhum projeto em andamento no momento.</p>
-          )}
-        </div>
+        {carregando ? (
+          <p>Carregando projetos...</p>
+        ) : projetosFiltrados.length > 0 ? (
+          <div className={styles.grid}>
+            {projetosFiltrados.map(projeto => (
+              <ProjetoCard key={projeto.id} projeto={projeto} />
+            ))}
+          </div>
+        ) : (
+          <p>Nenhum projeto em andamento no momento.</p>
+        )}
       </div>
       <Calendario
         projetos={
