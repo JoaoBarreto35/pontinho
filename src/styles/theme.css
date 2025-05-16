@@ -14,6 +14,17 @@
   --espaco-md: 1rem;
   --espaco-lg: 2rem;
   --borda-arredondada: 12px;
+
+  --toastify-color-light: var(--cor-fundo);
+
+  --toastify-color-info: var(--cor-primaria);
+  --toastify-color-success: var(--cor-laço);
+  --toastify-color-warning: var(--cor-nariz);
+  --toastify-color-error: red;
+  --toastify-text-color-light: var(--cor-texto);
+  --toastify-text-color-dark: var(--cor-texto);
+  --toastify-color-progress-light: var(--cor-laço);
+  --toastify-color-progress-dark: var(--cor-laço);
 }
 
 /* Modo Claro */
@@ -37,4 +48,6 @@ a {
 body[data-theme='dark'] {
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
+  --toastify-text-color-light: #e6e9f0;
+  --toastify-text-color-dark: #e6e9f0;
 }

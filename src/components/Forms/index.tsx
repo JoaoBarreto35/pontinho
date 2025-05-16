@@ -5,6 +5,7 @@ import type { Projeto } from '../../types/projeto.ts';
 import defaultImage from '../../../public/images/defaultImage.jpg';
 import { TrashIcon } from 'lucide-react';
 import { statusValidos, type StatusProjeto } from '../../types/status.ts';
+import { showMessage } from '../../adapters/showMessage.ts';
 
 type ProjetoCardProps = {
   projeto?: Projeto; // Deixa opcional para suportar criação
@@ -61,6 +62,7 @@ export default function DefaultForms({ projeto }: ProjetoCardProps) {
           : p,
       );
       localStorage.setItem('projetos', JSON.stringify(projetosAtualizados));
+      showMessage.success('Projeto salvo');
     } else {
       // Cria um novo projeto
       const novoProjeto: Projeto = {
@@ -76,8 +78,9 @@ export default function DefaultForms({ projeto }: ProjetoCardProps) {
       };
       projetosSalvos.push(novoProjeto);
       localStorage.setItem('projetos', JSON.stringify(projetosSalvos));
+      showMessage.success('Projeto Criado');
+      navigate('/');
     }
-    navigate('/');
   }
   function handleExcluirProjeto() {
     if (!projeto) return;
@@ -96,6 +99,9 @@ export default function DefaultForms({ projeto }: ProjetoCardProps) {
 
       localStorage.setItem('projetos', JSON.stringify(projetosAtualizados));
       navigate('/'); // Volta para a tela inicial
+      showMessage.success('Projeto excluído');
+    } else {
+      showMessage.info('Projeto nao foi excluído');
     }
   }
 

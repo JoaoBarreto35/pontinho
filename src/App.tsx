@@ -1,7 +1,12 @@
+import { MessagesContainer } from './components/MessagesContainer';
 import MainRouter from './routes/MainRouter';
 
 function App() {
-  return <MainRouter />;
+  return (
+    <MessagesContainer>
+      <MainRouter />
+    </MessagesContainer>
+  );
 }
 
 export default App;
