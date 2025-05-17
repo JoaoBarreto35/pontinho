@@ -48,6 +48,5 @@ a {
 body[data-theme='dark'] {
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
-  --toastify-text-color-light: #e6e9f0;
-  --toastify-text-color-dark: #e6e9f0;
+  --toastify-color-dark: var(--cor-fundo);
 }

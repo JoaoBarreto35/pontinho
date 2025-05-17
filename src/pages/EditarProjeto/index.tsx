@@ -5,8 +5,9 @@ import { Container } from '../../components/Container';
 import Header from '../../components/Header';
 import styles from './styles.module.css';
 
-import { EditIcon, Minus, Plus } from 'lucide-react';
+import { EditIcon, Minus, Plus, Timer } from 'lucide-react';
 import DefaultForms from '../../components/Forms';
+import { getProjetos, salvarProjeto } from '../../services/projetosStorage';
 
 export default function EditarProjeto() {
   const { id } = useParams();
@@ -17,27 +18,27 @@ export default function EditarProjeto() {
   const [rodando, setRodando] = useState(false);
 
   useEffect(() => {
-    const projetosSalvos: Projeto[] = JSON.parse(
-      localStorage.getItem('projetos') || '[]',
-    );
+    const projetosSalvos = getProjetos();
     const encontrado = projetosSalvos.find(p => p.id === id);
     if (encontrado) {
       setProjeto(encontrado);
-      setTempoGasto(
-        Number(localStorage.getItem(`tempo_${encontrado.id}`)) || 0,
-      );
+      setTempoGasto(encontrado.tempoGasto || 0); // corrigi aqui
     } else {
       navigate('/');
     }
   }, [id, navigate]);
 
   useEffect(() => {
-    let intervalo: number | null = null;
+    let intervalo: number | undefined;
+
     if (rodando && projeto?.id) {
-      intervalo = setInterval(() => {
+      intervalo = window.setInterval(() => {
         setTempoGasto(prev => {
-          localStorage.setItem(`tempo_${projeto.id}`, String(prev + 1));
-          return prev + 1;
+          const novoTempo = prev + 1;
+          const projetoAtualizado = { ...projeto, tempoGasto: novoTempo };
+          salvarProjeto(projetoAtualizado);
+          setProjeto(projetoAtualizado);
+          return novoTempo;
         });
       }, 1000);
     }
@@ -45,7 +46,7 @@ export default function EditarProjeto() {
     return () => {
       if (intervalo) clearInterval(intervalo);
     };
-  }, [rodando, projeto?.id]);
+  }, [rodando, projeto]);
 
   function iniciarTimer() {
     setRodando(true);
@@ -61,14 +62,9 @@ export default function EditarProjeto() {
 
   function salvarCarreiras(novaQtd: number) {
     if (!projeto) return;
-    const projetosSalvos: Projeto[] = JSON.parse(
-      localStorage.getItem('projetos') || '[]',
-    );
-    const atualizados = projetosSalvos.map(p =>
-      p.id === projeto.id ? { ...p, carreiras: novaQtd } : p,
-    );
-    localStorage.setItem('projetos', JSON.stringify(atualizados));
-    setProjeto(prev => (prev ? { ...prev, carreiras: novaQtd } : null));
+    const projetoAtualizado = { ...projeto, carreiras: novaQtd };
+    setProjeto(projetoAtualizado);
+    salvarProjeto(projetoAtualizado);
   }
 
   function handleAdicionarCarreira() {
@@ -116,7 +112,8 @@ export default function EditarProjeto() {
           {/* Timer - Posicionado entre carreiras e receita */}
           <div className={styles.timerBox}>
             <h3>
-              Timer: {new Date(tempoGasto * 1000).toISOString().substr(11, 8)}
+              <Timer />{' '}
+              {new Date(tempoGasto * 1000).toISOString().substr(11, 8)}
             </h3>
 
             <button onClick={rodando ? pausarTimer : iniciarTimer}>

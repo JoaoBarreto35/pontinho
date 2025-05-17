@@ -1,10 +1,13 @@
 // src/pages/Home.tsx
+import { NavLink } from 'react-router-dom';
 import Calendario from '../../components/Calendar';
 import { Container } from '../../components/Container';
 import Header from '../../components/Header';
 import ProjetoCard from '../../components/ProjetoCard';
 import type { Projeto } from '../../types/projeto';
+import { ordenarProjetosPorAtualizadoEm } from '../../utils/ordernarProjetos';
 import { useProjetosFiltrados } from '../hooks/useProjetosFiltrados';
+
 import styles from './styles.module.css';
 
 export default function Home() {
@@ -13,7 +16,7 @@ export default function Home() {
   const projetosFiltrados = projetos.filter(
     p => p.status === 'em progresso' || p.status === 'nao iniciado',
   );
-
+  const projetosOrdenados = ordenarProjetosPorAtualizadoEm(projetosFiltrados);
   return (
     <Container>
       <Header />
@@ -22,14 +25,19 @@ export default function Home() {
 
         {carregando ? (
           <p>Carregando projetos...</p>
-        ) : projetosFiltrados.length > 0 ? (
+        ) : projetosOrdenados.length > 0 ? (
           <div className={styles.grid}>
             {projetosFiltrados.map(projeto => (
               <ProjetoCard key={projeto.id} projeto={projeto} />
             ))}
           </div>
         ) : (
-          <p>Nenhum projeto em andamento no momento.</p>
+          <>
+            <p>Nenhum projeto em andamento no momento.</p>
+            <NavLink className={styles.criarNovo} to={'/novo'}>
+              Criar novo projeto
+            </NavLink>
+          </>
         )}
       </div>
       <Calendario

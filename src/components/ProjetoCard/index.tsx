@@ -31,16 +31,15 @@ export default function ProjetoCard({ projeto }: ProjetoCardProps) {
         )}
         <h3>{projeto.nome}</h3>
         <p className={styles.carreiras}>Carreiras: {projeto.carreiras}</p>
-        {projeto.prazo && (
-          <p className={styles.prazo}>
-            <span className={styles.prazo}>
-              Prazo:{' '}
-              {projeto.prazo
-                ? new Date(projeto.prazo + 'T00:00:00').toLocaleDateString()
-                : 'Sem prazo definido'}
-            </span>
-          </p>
-        )}
+
+        <p className={styles.prazo}>
+          <span className={styles.prazo}>
+            Prazo:{' '}
+            {projeto.prazo
+              ? new Date(projeto.prazo + 'T00:00:00').toLocaleDateString()
+              : 'Sem prazo definido'}
+          </span>
+        </p>
 
         <p className={styles.status}>
           <span>{getStatusLabel(projeto.status)}</span>

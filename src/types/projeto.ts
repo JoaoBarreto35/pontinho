@@ -9,4 +9,5 @@ export interface Projeto {
   prazo?: string;
   status?: 'nao iniciado' | 'em progresso' | 'finalizado';
   tempoGasto?: number; // Tempo em segundos
+  atualizadoEm?: string | null;
 }

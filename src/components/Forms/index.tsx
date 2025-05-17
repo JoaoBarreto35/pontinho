@@ -2,9 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import type { Projeto } from '../../types/projeto.ts';
-import defaultImage from '../../../public/images/defaultImage.jpg';
+import defaultImage from '../../assets/defaultImage.jpg';
 import { TrashIcon } from 'lucide-react';
 import { statusValidos, type StatusProjeto } from '../../types/status.ts';
+import {
+  excluirProjeto,
+  salvarProjeto,
+} from '../../services/projetosStorage.ts';
 import { showMessage } from '../../adapters/showMessage.ts';
 
 type ProjetoCardProps = {
@@ -41,68 +45,42 @@ export default function DefaultForms({ projeto }: ProjetoCardProps) {
   function handleSalvarProjeto(e: React.FormEvent) {
     e.preventDefault();
 
-    const projetosSalvos: Projeto[] = JSON.parse(
-      localStorage.getItem('projetos') || '[]',
-    );
+    const projetoFinal: Projeto = projeto
+      ? {
+          ...projeto,
+          nome,
+          descricao,
+          carreiras,
+          receita,
+          prazo,
+          imagemBase64: imagem ?? defaultImage,
+          status,
+        }
+      : {
+          id: Date.now().toString(),
+          nome,
+          descricao,
+          carreiras,
+          receita,
+          prazo,
+          imagemBase64: imagem ?? defaultImage,
+          criadoEm: new Date().toISOString(),
+          status,
+        };
 
-    if (projeto) {
-      // Atualiza o projeto existente
-      const projetosAtualizados = projetosSalvos.map(p =>
-        p.id === projeto.id
-          ? {
-              ...p,
-              nome,
-              descricao,
-              carreiras,
-              receita,
-              prazo,
-              imagemBase64: imagem ?? defaultImage,
-              status,
-            }
-          : p,
-      );
-      localStorage.setItem('projetos', JSON.stringify(projetosAtualizados));
-      showMessage.success('Projeto salvo');
-    } else {
-      // Cria um novo projeto
-      const novoProjeto: Projeto = {
-        id: Date.now().toString(),
-        nome,
-        descricao,
-        carreiras,
-        receita,
-        imagemBase64: imagem || defaultImage,
-        criadoEm: new Date().toISOString(),
-        prazo,
-        status,
-      };
-      projetosSalvos.push(novoProjeto);
-      localStorage.setItem('projetos', JSON.stringify(projetosSalvos));
-      showMessage.success('Projeto Criado');
-      navigate('/');
-    }
+    salvarProjeto(projetoFinal);
+    showMessage.dismiss();
+    showMessage.success(projeto ? 'Projeto salvo' : 'Projeto criado');
+    navigate('/');
   }
   function handleExcluirProjeto() {
     if (!projeto) return;
-
-    const confirmacao = window.confirm(
-      'Tem certeza que deseja excluir este projeto?',
-    );
-
-    if (confirmacao) {
-      const projetosSalvos: Projeto[] = JSON.parse(
-        localStorage.getItem('projetos') || '[]',
-      );
-      const projetosAtualizados = projetosSalvos.filter(
-        p => p.id !== projeto.id,
-      );
-
-      localStorage.setItem('projetos', JSON.stringify(projetosAtualizados));
-      navigate('/'); // Volta para a tela inicial
-      showMessage.success('Projeto excluído');
-    } else {
-      showMessage.info('Projeto nao foi excluído');
-    }
+    const confirmado = window.confirm('Tem certeza que deseja excluir?');
+    if (!confirmado) return;
+    excluirProjeto(projeto.id);
+    showMessage.dismiss();
+    showMessage.info('Projeto excluído');
+    navigate('/');
   }
 
   return (
@@ -195,11 +173,13 @@ export default function DefaultForms({ projeto }: ProjetoCardProps) {
         </div>
 
         {projeto && (
-          <TrashIcon
+          <div
             onClick={handleExcluirProjeto}
             className={styles.excluirProjeto}
             aria-label='Excluir Projeto'
-          />
+          >
+            <TrashIcon size={20} />
+          </div>
         )}
       </form>
     </div>
