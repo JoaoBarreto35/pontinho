@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 import ProjetoCard from '../../components/ProjetoCard';
 import type { Projeto } from '../../types/projeto';
 import { ordenarProjetosPorAtualizadoEm } from '../../utils/ordernarProjetos';
-import { useProjetosFiltrados } from '../hooks/useProjetosFiltrados';
+import { useProjetosFiltrados } from '../../hooks/useProjetosFiltrados';
 
 import styles from './styles.module.css';
 

@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import { Container } from '../../components/Container';
 import Header from '../../components/Header';
 import ProjetoCard from '../../components/ProjetoCard';
-import { useProjetosFiltrados } from '../hooks/useProjetosFiltrados';
+import { useProjetosFiltrados } from '../../hooks/useProjetosFiltrados';
 import type { StatusProjeto } from '../../types/status';
 import { statusValidos } from '../../types/status';
 
@@ -55,7 +55,6 @@ export default function Projetos() {
           value={busca}
           onChange={e => setBusca(e.target.value)}
           className={styles.campoBusca}
-          style={{ color: 'black' }}
         />
         <select
           value={status}

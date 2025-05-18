@@ -12,7 +12,8 @@
   border: 1px solid #ccc;
   max-width: 300px;
   width: 100%;
-  color: black;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
 }
 
 .grid {

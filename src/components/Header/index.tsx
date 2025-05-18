@@ -1,12 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { Sun, Moon, Home, Plus, BookIcon } from 'lucide-react';
+import { Home, Plus, BookIcon, Settings } from 'lucide-react';
 import styles from './styles.module.css';
 import { Logo } from '../Logo';
-import { useTheme } from '../../pages/hooks/useTheme';
 
 export default function Header() {
-  const { theme, alternarTema } = useTheme();
-
   return (
     <header className={styles.header}>
       <Logo />
@@ -37,15 +34,14 @@ export default function Header() {
           <BookIcon />
         </NavLink>
 
-        {/* Botão para alternar o tema */}
-        <button
-          onClick={alternarTema}
+        <NavLink
+          to='/configuracoes'
           className={styles.menuLink}
-          aria-label='Alternar Tema'
-          title='Alternar Tema'
+          aria-label='Projetos'
+          title='Projetos'
         >
-          {theme === 'light' ? <Moon /> : <Sun />}
-        </button>
+          <Settings />
+        </NavLink>
       </nav>
     </header>
   );

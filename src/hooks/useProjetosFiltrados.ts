@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { Projeto } from '../../types/projeto';
-import { filtrarProjetos } from '../../utils/filtrarProjetos';
+import type { Projeto } from '../types/projeto';
+import { filtrarProjetos } from '../utils/filtrarProjetos';
 
 type Filtros = {
   busca?: string;

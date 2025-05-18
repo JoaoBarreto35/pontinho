@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import NovoProjeto from '../pages/NovoProjeto';
 import EditarProjeto from '../pages/EditarProjeto';
-import Historico from '../pages/Historico';
+import Configuração from '../pages/Configurações';
 import ListaDeProjetos from '../pages/ListaDeProjetos';
 
 export default function MainRouter() {
@@ -12,7 +12,7 @@ export default function MainRouter() {
         <Route path='/' element={<Home />} />
         <Route path='/novo' element={<NovoProjeto />} />
         <Route path='/projeto/:id' element={<EditarProjeto />} />
-        <Route path='/historico' element={<Historico />} />
+        <Route path='/configuracoes' element={<Configuração />} />
         <Route path='/projetos' element={<ListaDeProjetos />} />
       </Routes>
     </BrowserRouter>
